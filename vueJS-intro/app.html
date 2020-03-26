@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="counter++">Increase</button>
+        <button v-on:click="counter--">Decrease</button>
+        <button v-on:click="secondCounter++">Increase Second</button>
+        <!-- <p>{{ counter }} </p> -->
+        <p>Counter: {{ counter }} | {{ secondCounter }}
+        </p>
+        <p>Result: {{ result() }} | {{ output }}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                counter: 0,
+                secondCounter:0,      
+            },
+            computed: {
+                output: function() { 
+                console.log('computed');
+                   return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                }
+            },
+            watch: {
+                counter: function(value) {
+                    var vn = this;
+                    setTimeout(function(){
+                      vn.counter = 0;  
+                    }, 2000);
+                }
+            },
+            methods: {
+                result: function() {
+                    console.log('method');
+                   return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+                }
+                // increase: function () {
+                //     this.counter++;
+                //     this.result = this.counter > 5 ? 'Greater 5' : 'Smaller 5'
+                },
+                // updateCoordinates: function (event) {
+                //     this.x = event.clientX;
+                //     this.y = event.clientY;
+                // },
+                // alertMe: function() {
+                //     alert('Alert!');
+                // }
+                // dummy: function(event) {
+                //     event.stopPropagation();
+                // }
+
+          
+
+        });
+    </script>
+</body>
+
+</html>
